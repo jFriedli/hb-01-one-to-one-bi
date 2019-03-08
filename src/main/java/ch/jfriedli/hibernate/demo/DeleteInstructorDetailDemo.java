@@ -22,9 +22,14 @@ public class DeleteInstructorDetailDemo {
 		try {
 			session.beginTransaction();
 			
-			int id = 2;
+			int id = 3;
 			
 			InstructorDetail instructorDetail = session.get(InstructorDetail.class, id);
+			
+			//remove the associated object reference
+			//break bi directional link
+			instructorDetail.getInstructor().setInstructorDetail(null);
+			
 			
 			System.out.println("Delete " + instructorDetail);
 			session.delete(instructorDetail);
